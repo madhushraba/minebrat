@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import Ui from "./Ui";
-// import Citieslist from "./Cities-list";
 
 const List = () => {
   const nav = useNavigate();
@@ -18,7 +16,7 @@ const List = () => {
   const fetchState = async () => {
     try {
       const res = await axios.get("https://api.minebrat.com/api/v1/states");
-      // console.log(res);
+      console.log(res);
       setstates(res.data);
     } catch (err) {
       console.log(err);
@@ -31,7 +29,7 @@ const List = () => {
         `http://api.minebrat.com/api/v1/states/cities/${id}`
       );
       setcities(resp.data);
-      console.log(typeof id);
+      // console.log(typeof id);
       // console.log(resp);
     } catch (err) {
       console.log(err);
@@ -39,8 +37,10 @@ const List = () => {
   };
 
   const handlechange = (e) => {
+  //  console.log(e.target.name);
+    setselectedstate(e.target.options[e.target.selectedIndex].text);
+    // setselectedstate(e.nativeEvent.target.value);
     fetchCities(e.target.value);
-    setselectedstate(e.target.value);
   };
 
   const handlechangecity = (e) => {
@@ -49,21 +49,20 @@ const List = () => {
   const handsub = () => {
     nav({
       pathname: "/result",
-      search: `?state=${selectedstate}&city=${selectedcity}`,
+      search: `&state=${selectedstate}&city=${selectedcity}`,
     });
-    // console.log("ycgvbhnj");
   };
 
   return (
     <div>
       <div className="label">
-        <label htmlFor="state">Choose a state:</label>
+        <label >Choose a state:</label>
 
-        <select name="state" id="id" onChange={handlechange}>
+        <select id="id" onChange={handlechange}>
           {states.map((e) => {
             return (
-              <option value={e.stateId} key={e.stateId}>
-                {e.stateName}
+              <option value={e.stateId} name={e.stateName} key={e.stateId}>
+                {e.stateName} 
               </option>
             );
           })}

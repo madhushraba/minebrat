@@ -6,7 +6,7 @@ const Result = () => {
   return (
     <div>
       <h1>
-        You Have selected .
+        You Have selected -
         {SearchParams.get("state")}
       </h1>
       <h1> city :{SearchParams.get("city")}</h1>

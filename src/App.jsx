@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <h1>Minebrat assignment</h1>
+      <h2>Minebrat assignment</h2>
       {/* <Task/> */}
       {/* <List/> */}
 
